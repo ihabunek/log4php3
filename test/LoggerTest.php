@@ -17,12 +17,19 @@
  * limitations under the License.
  */
 
-/**
- * @group main
- */
 class LoggerTest extends PHPUnit_Framework_TestCase
 {
-    public function testTrial
+    public function testTest1()
+    {
+        self::assertTrue(true);
+    }
+    
+    public function testTest2()
+    {
+        self::assertTrue(true);
+    }
+    
+    public function testTest3()
     {
         self::assertTrue(true);
     }

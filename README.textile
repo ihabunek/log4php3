@@ -1,4 +1,5 @@
-﻿h1. Apache log4php
+﻿
+h1. Apache log4php
 
 Preparations and tryouts for log4php 3.0.0. This is nowhere near stable code.
 
@@ -42,6 +43,23 @@ To install required libraries, run:
 <pre>php composer.phar install --dev</pre>
 
 This will download them to <code>vendor</code> directory.
+
+h2. Build commands
+
+*Perform unit tests*:
+<pre>phing test</pre>
+
+alternatively:
+<pre>phpunit</pre>
+
+*Render manual* to <code>target/manual</code>:
+<pre>phing manual</pre>
+
+*Package files* (currently only contents of <code>src</code> directory):
+<pre>phing manual</pre>
+
+*Clean project* (deletes target directory):
+<pre>phing clean</pre>
 
 h2. Legal
 

@@ -9,7 +9,6 @@
     
     <property name="man_template_dir" value="${project.basedir}/manual/templates" />
     <property name="man_source_dir" value="${project.basedir}/manual/src" />
-    
     <property name="target_dir" value="${project.basedir}/target" />
     
     <target name="help">
@@ -19,10 +18,28 @@
     <target name="clean">
         <delete dir="${target_dir}" includeemptydirs="true" quiet="true" />
     </target>
+
+    <target name="test">
+        <phpunit haltonerror="true" haltonfailure="true" printsummary="true">
+            <batchtest>
+                <fileset dir="${project.basedir}/test">
+                    <include name="*.php"/>
+                </fileset>
+            </batchtest>
+        </phpunit>
+    </target>
     
     <target name="package">
         <mkdir dir="${target_dir}/packages" />
-        <echo msg="Creating tar.gz archive..." />
+        <echo msg="Creating zip archive..." />
+        
+        <zip destfile="target/packages/apache-log4php-${version}.zip">
+            <fileset dir="src">
+                <include name="**/**" />
+            </fileset>
+        </zip>
+        
+        <!-- TAR requires the Archive_Tar PEAR package, so is currently commented. -->
         <!--
         <tar destfile="${target_dir}/packages/apache-log4php-${version}.tar.gz" compression="gzip">
             <fileset dir=".">
