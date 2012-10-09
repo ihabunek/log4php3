@@ -1,0 +1,21 @@
+{
+    "name": "apache/log4php",
+    "description": "A versatile logging framework for PHP",
+    "keywords": ["log","logging"],
+    "homepage": "http://logging.apache.org/log4php",
+    "license": "Apache license 2.0",
+    "version": "3.0.0-dev",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "apigen/apigen": "2.*",
+        "twig/twig": "1.*",
+        "phing/phing": "dev-master",
+        "netcarver/textile": "dev-master"
+    },
+    "autoload": {
+        "classmap": ["lib/phing/task"]
+    }
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Apache log4php" description="A versatile logging framework for PHP" basedir="." default="help">
+
+    <!-- Task for rendering manual pages via Twig -->
+    <taskdef name="twig" classname="lib.phing.task.TwigTask" />
+
+    <property name="version" value="3.0.0" />
+    
+    <property name="man_template_dir" value="${project.basedir}/manual/templates" />
+    <property name="man_source_dir" value="${project.basedir}/manual/src" />
+    
+    <property name="target_dir" value="${project.basedir}/target" />
+    
+    <target name="help">
+        <echo msg="Darn! Nobody has written the help section yet." />
+    </target>
+    
+    <target name="clean">
+        <delete dir="${target_dir}" includeemptydirs="true" quiet="true" />
+    </target>
+    
+    <target name="package">
+        <mkdir dir="${target_dir}/packages" />
+        <echo msg="Creating tar.gz archive..." />
+        <!--
+        <tar destfile="${target_dir}/packages/apache-log4php-${version}.tar.gz" compression="gzip">
+            <fileset dir=".">
+                <include name="src" />
+            </fileset>
+        </tar>
+        -->
+    </target>
+    
+    <target name="manual">
+        <twig templateDir="${man_template_dir}" targetDir="${target_dir}/manual">
+            <fileset dir="${man_source_dir}">
+                <include name="**/*.twig"/>
+            </fileset>
+        </twig>
+    </target>
+</project>
