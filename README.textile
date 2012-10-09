@@ -32,18 +32,14 @@ h2. Installing prerequisites
 Development libraries are instaled via "Composer":http://getcomposer.org/.
 
 Install Composer by running:
-<pre>
-wget http://getcomposer.org/installer
+<pre>wget http://getcomposer.org/installer
 php installer
-rm installer
-</pre>
+rm installer</pre>
 
 This will download <code>composer.phar</code>
 
 To install required libraries, run:
-<pre>
-php composer.phar install --dev
-</pre>
+<pre>php composer.phar install --dev</pre>
 
 This will download them to <code>vendor</code> directory.
 
