@@ -50,6 +50,11 @@
     </target>
     
     <target name="manual">
+        <copy todir="target/manual">
+            <fileset dir="manual/resources">
+                <include name="**" />
+            </fileset>
+        </copy>
         <twig templateDir="${man_template_dir}" targetDir="${target_dir}/manual">
             <fileset dir="${man_source_dir}">
                 <include name="**/*.twig"/>

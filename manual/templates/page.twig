@@ -2,17 +2,17 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{% block title %}{% endblock %} - {{ projectName }}</title>
+        <title>{% block title %}{% endblock %}</title>
 
-        <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
-        <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css" />
+        <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="lib/google-code-prettify/prettify.css" rel="stylesheet" type="text/css" />
         <link href="css/site.css" rel="stylesheet" type="text/css" />
 
     </head>
     <body>
-        {% include 'navbar.twig' %}
-
         <div class="container">
+            {% include 'navbar.twig' %}
+        
             <div class="content">
                 {% block content %}{% endblock %}
             </div>
@@ -22,8 +22,9 @@
         </div>
     </body>
 
-    <script src="http://twitter.github.com/bootstrap/assets/js/jquery.min.js"></script>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap.min.js"></script>
+    <script src="lib/jquery/jquery-1.8.2.js "></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/google-code-prettify/prettify.js"></script>
     <script src="js/site.js"></script>
 </html>
 

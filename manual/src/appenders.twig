@@ -13,6 +13,7 @@ h2. Appender reference
 
 The following appender classes are available:
 
+table(table table-bordered).
 |_. Name |_. Destination |
 | LoggerAppenderConsole | Console, directly to the stdout or stderr stream. |
 | LoggerAppenderEcho | Console, using the PHP echo command. |
@@ -37,7 +38,7 @@ From the configuration you can see that an appender has the following properties
 * A *layout* which transforms the logging events to string which can be logged. A layout is required by most appenders, but some do not require it, such as the database appender. If a layout is not defined, the appenders will use a default layout.
 * Zero or more *parameters* which configure the appender behaviour. In this example, the _file_ parameter governs the path to the file which will be used for logging, and _append_ defines that log messages should be appended to the file, instead of truncating it.
 
-<pre class="prettyprint linenums"><![CDATA[
+<pre>
 <configuration xmlns="http://logging.apache.org/log4php/">
     <appender name="default" class="LoggerAppenderFile">
         <layout class="LoggerLayoutSimple" />
@@ -48,8 +49,7 @@ From the configuration you can see that an appender has the following properties
         <appender_ref ref="default" />
     </root>
 </configuration>
-]]></pre>
-
+</pre>
 
 h2. Linking appenders to loggers
 
@@ -57,7 +57,7 @@ A logger can be linked to one or more appenders. Also, multiple loggers can shar
 
 Consider the following configuration:
 
-<pre class="prettyprint linenums"><![CDATA[
+<pre>
 <log4php:configuration xmlns:log4php="http://logging.apache.org/log4php/">
     <appender name="primus" class="LoggerAppenderConsole" />
     <appender name="secundus" class="LoggerAppenderFile">
@@ -71,7 +71,7 @@ Consider the following configuration:
         <appender_ref ref="primus" />
     </logger>
 </log4php:configuration>
-]]></pre>
+</pre>
 
 This configures two appenders, called _primus_ and _secundus_, and two loggers named _main_ and _alternative_. The logger _main_ is linked to _primus_ and _secundus_ and will therefore forward logging events to both of them. In other words, it will log both to console and to a file. Logger _alternative_ is only linked to appender _primus_ and will therefore only log to the console.
 
@@ -83,14 +83,14 @@ For example, if you set <code>WARN</code> as a threshold, then <code>INFO</code>
 
 An example of setting an appender threshold:
 
-<pre class="prettyprint linenums"><![CDATA[
+<pre>
 <configuration xmlns="http://logging.apache.org/log4php/">
     <appender name="default" class="LoggerAppenderEcho" threshold="WARN" />
     <root>
         <appender_ref ref="default" />
     </root>
 </configuration>
-]]></pre>
+</pre>
 
 {% endfilter %}
 {% endblock %}
