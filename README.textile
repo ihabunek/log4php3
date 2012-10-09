@@ -1,5 +1,4 @@
 ﻿h1. Apache log4php
-==================
 
 Preparations and tryouts for log4php 3.0.0. This is nowhere near stable code.
 
@@ -8,10 +7,12 @@ http://logging.apache.org/log4php
 
 h2. Project structure
 
-Root folder:
-| apigen.neon   | configuration file for ApiGen |
-| build.xml     | configuration file for Phing |
+Files in root folder:
+
+| apigen.neon   | configuration file for ApiGen   |
+| build.xml     | configuration file for Phing    |
 | composer.json | configuration file for Composer |
+| phpunit.xml   | configuration file for PHPUnit  |
 | setenv.bat    | Puts vendor/bin into the path so it's possible to use scripts located there |
 
 Subfolders:
@@ -19,8 +20,32 @@ Subfolders:
 | lib              | holds code which is required for building |
 | manual           | holds the manual |
 | manual/src       | manual source, one file per manual page |
-| manual/templates | manual templates |
+| manual/templates | manual templates; boilerplate |
 | manual/resources | manual resources - css, js, images |
+| src              | main source directory, holds Logger.php and everything else |
+| target           | created by Phing for generated content (manual, packages, ...); ignored by CMS |
+| test             | holds unit tests |
+| vendor           | created by Composer; holds libraries required for the building process |
+
+h2. Installing prerequisites
+
+Development libraries are instaled via "Composer":http://getcomposer.org/.
+
+Install Composer by running:
+<pre>
+wget http://getcomposer.org/installer
+php installer
+rm installer
+</pre>
+
+This will download <code>composer.phar</code>
+
+To install required libraries, run:
+<pre>
+php composer.phar install --dev
+</pre>
+
+This will download them to <code>vendor</code> directory.
 
 h2. Legal
 
