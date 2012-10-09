@@ -56,7 +56,7 @@ alternatively:
 <pre>phing manual</pre>
 
 *Package files* (currently only contents of <code>src</code> directory):
-<pre>phing manual</pre>
+<pre>phing package</pre>
 
 *Clean project* (deletes target directory):
 <pre>phing clean</pre>
