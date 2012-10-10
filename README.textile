@@ -1,4 +1,3 @@
-﻿
 h1. Apache log4php
 
 Preparations and tryouts for log4php 3.0.0. This is nowhere near stable code.
