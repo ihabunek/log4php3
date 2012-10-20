@@ -19,12 +19,12 @@ Subfolders:
 
 | lib              | holds code which is required for building |
 | manual           | holds the manual |
-| manual/src       | manual source, one file per manual page |
+| manual/pages     | manual source, one file per manual page |
 | manual/templates | manual templates; boilerplate |
 | manual/resources | manual resources - css, js, images |
 | src              | main source directory, holds Logger.php and everything else |
 | target           | created by Phing for generated content (manual, packages, ...); ignored by CMS |
-| test             | holds unit tests |
+| tests            | holds unit tests |
 | vendor           | created by Composer; holds libraries required for the building process |
 
 h2. Installing prerequisites
@@ -48,20 +48,23 @@ h2. Build commands
 *Perform unit tests*:
 <pre>phing test</pre>
 
-alternatively:
-<pre>phpunit</pre>
+*Check PSR-0 coding standards*:
+<pre>phing sniff</pre>
+
+*Generate API documsnetation*:
+<pre>phing apigen</pre>
 
 *Render manual* to <code>target/manual</code>:
 <pre>phing manual</pre>
 
-*Package files* (currently only contents of <code>src</code> directory):
+*Package files*:
 <pre>phing package</pre>
 
-*Clean project* (deletes target directory):
+*Clean generated files*:
 <pre>phing clean</pre>
 
 h2. Legal
 
-Copyright ©	2012 Apache Software Foundation. All Rights Reserved. Licensed under the Apache Software License, Version 2.0. 
+Copyright ©	2012 Apache Software Foundation. All Rights Reserved. Licensed under the Apache Software License, Version 2.0.
 
 Apache log4php, Apache, log4php are trademarks of The Apache Software Foundation.

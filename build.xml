@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project name="Apache log4php" description="A versatile logging framework for PHP" default="help">
 
     <!-- Task for rendering manual pages via Twig -->
