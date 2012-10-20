@@ -10,10 +10,11 @@
 
     <target name="help">
         <echo msg="Darn! Nobody has written the help section yet." />
+        <echo msg="${project.basedir}" />
     </target>
 
     <target name="clean">
-        <delete dir="${target_dir}" includeemptydirs="true" quiet="true" />
+        <delete dir="target" includeemptydirs="true" quiet="true" />
     </target>
 
     <target name="test">
@@ -41,7 +42,7 @@
     </target>
     
     <target name="package">
-        <mkdir dir="${target_dir}/packages" />
+        <mkdir dir="target/packages" />
         <echo msg="Creating zip archive..." />
 
         <zip destfile="target/packages/apache-log4php-${version}.zip">
@@ -49,15 +50,11 @@
                 <include name="**/**" />
             </fileset>
         </zip>
-
-        <!-- TAR requires the Archive_Tar PEAR package, so is currently commented. -->
-        <!--
-        <tar destfile="${target_dir}/packages/apache-log4php-${version}.tar.gz" compression="gzip">
+        <tar destfile="target/packages/apache-log4php-${version}.tar.gz" compression="gzip">
             <fileset dir=".">
                 <include name="src" />
             </fileset>
         </tar>
-        -->
     </target>
 
     <target name="manual">

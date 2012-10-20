@@ -2,3 +2,4 @@ vendor
 target
 tmp
 composer.lock
+myenv.bat
