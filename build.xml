@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Apache log4php" description="A versatile logging framework for PHP" basedir="." default="help">
+<project name="Apache log4php" description="A versatile logging framework for PHP" default="help">
 
     <!-- Task for rendering manual pages via Twig -->
     <taskdef name="twig" classname="lib.phing.task.TwigTask" />
@@ -10,17 +10,20 @@
 
     <target name="help">
         <echo msg="Darn! Nobody has written the help section yet." />
-        <echo msg="${project.basedir}" />
     </target>
 
     <target name="clean">
-        <delete dir="target" includeemptydirs="true" quiet="true" />
+        <delete dir="${project.basedir}/target" includeemptydirs="true" quiet="true" />
+    </target>
+
+    <target name="apigen">
+        <apigen config="apigen.neon" />
     </target>
 
     <target name="test">
         <phpunit haltonerror="true" haltonfailure="true" printsummary="true">
             <batchtest>
-                <fileset dir="${project.basedir}/test">
+                <fileset dir="tests">
                     <include name="*.php"/>
                 </fileset>
             </batchtest>
@@ -40,7 +43,7 @@
             </fileset>
         </phpcodesniffer>
     </target>
-    
+
     <target name="package">
         <mkdir dir="target/packages" />
         <echo msg="Creating zip archive..." />

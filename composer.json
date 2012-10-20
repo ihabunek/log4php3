@@ -22,7 +22,8 @@
         "phing/phing": "dev-master",
         "netcarver/textile": "dev-master",
         "pear-pear.php.net/PEAR": "*",
-        "pear-pear.php.net/Archive_Tar": "*"
+        "pear-pear.php.net/Archive_Tar": ">=1.3.0",
+        "pear-pear.php.net/PHP_CodeSniffer": ">=1.4.0"
     },
     "autoload": {
         "psr-0": {
