@@ -5,16 +5,13 @@
     <!-- Task for rendering manual pages via Twig -->
     <taskdef name="twig" classname="lib.phing.task.TwigTask" />
 
-    <property name="version" value="3.0.0" />
-    
-    <property name="man_template_dir" value="${project.basedir}/manual/templates" />
-    <property name="man_source_dir" value="${project.basedir}/manual/src" />
-    <property name="target_dir" value="${project.basedir}/target" />
-    
+    <!-- Current project version -->
+    <property name="version" value="3.0.0-dev" />
+
     <target name="help">
         <echo msg="Darn! Nobody has written the help section yet." />
     </target>
-    
+
     <target name="clean">
         <delete dir="${target_dir}" includeemptydirs="true" quiet="true" />
     </target>
@@ -28,17 +25,31 @@
             </batchtest>
         </phpunit>
     </target>
+
+    <target name="sniff">
+        <phpcodesniffer standard="PSR2">
+            <fileset dir="src/">
+                <include name="**/*.php"/>
+            </fileset>
+            <fileset dir="tests/">
+                <include name="**/*.php"/>
+            </fileset>
+            <fileset dir="lib/">
+                <include name="**/*.php"/>
+            </fileset>
+        </phpcodesniffer>
+    </target>
     
     <target name="package">
         <mkdir dir="${target_dir}/packages" />
         <echo msg="Creating zip archive..." />
-        
+
         <zip destfile="target/packages/apache-log4php-${version}.zip">
             <fileset dir="src">
                 <include name="**/**" />
             </fileset>
         </zip>
-        
+
         <!-- TAR requires the Archive_Tar PEAR package, so is currently commented. -->
         <!--
         <tar destfile="${target_dir}/packages/apache-log4php-${version}.tar.gz" compression="gzip">
@@ -48,15 +59,15 @@
         </tar>
         -->
     </target>
-    
+
     <target name="manual">
         <copy todir="target/manual">
             <fileset dir="manual/resources">
                 <include name="**" />
             </fileset>
         </copy>
-        <twig templateDir="${man_template_dir}" targetDir="${target_dir}/manual">
-            <fileset dir="${man_source_dir}">
+        <twig templates="manual/templates" target="target/manual">
+            <fileset dir="manual/pages">
                 <include name="**/*.twig"/>
             </fileset>
         </twig>

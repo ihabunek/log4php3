@@ -3,7 +3,7 @@
     "description": "A versatile logging framework for PHP",
     "keywords": ["log","logging"],
     "homepage": "http://logging.apache.org/log4php",
-    "license": "Apache license 2.0",
+    "license": "Apache-2.0",
     "version": "3.0.0-dev",
     "require": {
         "php": ">=5.3.0"
@@ -16,6 +16,9 @@
         "netcarver/textile": "dev-master"
     },
     "autoload": {
+        "psr-0": {
+            "Apache\\log4php": "src/"
+        },
         "classmap": ["lib/phing/task"]
     }
 }

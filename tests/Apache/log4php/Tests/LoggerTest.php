@@ -1,5 +1,7 @@
 <?php
 
+namespace Apache\log4php\Tests;
+
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -23,12 +25,12 @@ class LoggerTest extends PHPUnit_Framework_TestCase
     {
         self::assertTrue(true);
     }
-    
+
     public function testTest2()
     {
         self::assertTrue(true);
     }
-    
+
     public function testTest3()
     {
         self::assertTrue(true);
