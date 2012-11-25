@@ -3,3 +3,4 @@ target
 tmp
 composer.lock
 myenv.bat
+docs/_build

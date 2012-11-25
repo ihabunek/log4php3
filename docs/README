@@ -1,0 +1,16 @@
+This directory contains the documentation for Apache log4php.
+
+The documentation is in reStructuredText (ReST) format [1] and can be viewed 
+using any text editor. Conversion to other formats, such as html, epub and pdf
+is achieved by using the Sphinx documentation system [2], and requires 
+Python.
+
+To render the documentation to HTML:
+* install Sphinx (using ``sudo pip install Sphinx`` or some other method)
+* while in the ``docs`` directory, run ``make html``
+
+The documentation will be rendered to _build/html/.
+
+References: 
+[1] ReST - http://docutils.sourceforge.net/rst.html
+[2] Sphinx - http://sphinx-doc.org
