@@ -64,7 +64,7 @@ release = '3.0.0-dev'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ['_build', '_env']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -81,7 +81,7 @@ exclude_patterns = ['_build']
 #show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = 'default'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -99,7 +99,7 @@ html_theme = 'default'
 #html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-#html_theme_path = []
+html_theme_path = ['_theme']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -283,3 +283,13 @@ epub_copyright = u'2012, Ivan Habunek'
 
 # Allow duplicate toc entries.
 #epub_tocdup = True
+
+#
+# Additions by IH
+# ###############
+
+# Hack to enable PHP highlighting for PHP code not between "<?php" "?>" by default
+# From: https://github.com/fabpot/sphinx-php
+from sphinx.highlighting import lexers
+from pygments.lexers.web import PhpLexer
+lexers['php'] = PhpLexer(startinline=True)
