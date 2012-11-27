@@ -1,6 +1,8 @@
+build
 vendor
 target
 tmp
 composer.lock
 myenv.bat
 docs/_build
+docs/_env
