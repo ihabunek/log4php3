@@ -15,7 +15,6 @@ The following appender classes are available:
    :maxdepth: 1
 
    console
-   file
 
 +---------------------------+---------------------------------------------------------------------+
 | Name                      | Logging destination                                                 |

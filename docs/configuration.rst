@@ -10,11 +10,12 @@ Log4php understands three configuration formats: XML, PHP and Properties, all of
 in more details in the following sections.
 
 The configuration is passed to log4php by calling the static method ``Logger::configure()``
-before issuing any logging requests. In case log4php is not configured by the time a logging request is
-issued, log4php will configure itself using the <a href="#Default_configuration">default configuration</a>.
+before issuing any logging requests. In case log4php is not configured by the time a logging request
+is issued, log4php will configure itself using the `default configuration`_.
 
-XML
-===
+XML format
+==========
+
 XML is the most common configuration format, and it is the most prominently featured in the
 documentation and examples.
 
@@ -42,13 +43,13 @@ documentation:
 * filters_
 * renderers_
 
-PHP
-===
+PHP format
+==========
 
 Configuration can also be stored in a PHP array. This is the format used internally by log4php. All
-other formats are converted to a PHP array before being used by the configurator. Because of this, the
-PHP configuration format should be used when performance is important since it will avoid the overhead
-of parsing the ini or XML file.
+other formats are converted to a PHP array before being used by the configurator. Because of this, 
+the PHP configuration format should be used when performance is important since it will avoid the 
+overhead of parsing the ini or XML file.
 
 This format can be used in one of two ways:
 
@@ -74,9 +75,9 @@ The configuration array can directly be passed to ``Logger::configure()``.
         )
     ));
 
-Alternatively a file can be created which holds the PHP configuration array. The file must
-have the ``php`` extension and it should *return* the configuration array. For example,
-a file named ``config.php`` with the following content:
+Alternatively a file can be created which holds the PHP configuration array. The file must have the
+``php`` extension and it should *return* the configuration array. For example, a file named 
+``config.php`` with the following content:
 
 .. code-block:: php
 
@@ -113,17 +114,17 @@ This file can then be used to configure log4php:
         $configurator = new LoggerConfiguratorDefault();
         $config = $configurator->parse('/path/to/config.xml');
 
-INI
-===
+INI format
+==========
 
 The properties configuration format is a legacy method of configuring log4php. It was inherited from
-`Apache log4j <logging.apache.org/log4j/1.2/manual.html>`_ and uses the same format. The only
+`Apache log4j <http://logging.apache.org/log4j/1.2/manual.html>`_ and uses the same format. The only
 difference is that lines begin with ``log4php`` instead of ``log4j``.
 
 .. deprecated:: 2.2.0
     This format has been deprecated. Support will not be removed for the foreseeable future, however
-    it may not be updated to include newly introduced features. It is recommended that you use either
-    the XML_ or PHP_ configuration format.
+    it may not be updated to include newly introduced features. It is recommended that you use 
+    either the `XML format`_ or `PHP format`_ for configuration.
 
 The properites configuration format does not support filters.
 

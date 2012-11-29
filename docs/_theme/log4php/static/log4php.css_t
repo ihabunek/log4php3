@@ -1,0 +1,6 @@
+@import url("sphinxdoc.css"); 
+
+.container.tabs ul { list-style:none; padding: 0; margin: 10px 0 2px 0; border-bottom: 1px solid #CCC }
+.container.tabs li { display:inline; margin-left: 8px; padding: 5px 15px 3px 15px; border: 1px solid #CCC; border-bottom: none }
+.container.tabs li.active { border-bottom: none; background-color: lemonchiffon }
+.container.tabs li a { text-decoration: none }
