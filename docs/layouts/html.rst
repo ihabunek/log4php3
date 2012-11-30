@@ -23,7 +23,7 @@ Examples
 
 .. container:: tabs
 
-    .. rubric:: XML config
+    .. rubric:: XML format
     .. code-block:: xml
 
         <configuration xmlns="http://logging.apache.org/log4php/">
@@ -38,7 +38,7 @@ Examples
         </configuration>
         ]]></pre>
 
-    .. rubric:: PHP config
+    .. rubric:: PHP format
     .. code-block:: php
 
         array(

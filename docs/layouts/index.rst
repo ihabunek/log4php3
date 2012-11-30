@@ -14,4 +14,6 @@ Layout reference
 .. toctree::
    :maxdepth: 1
 
+   html
+   pattern
    xml
