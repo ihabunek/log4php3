@@ -1,71 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Apache log4php" description="A versatile logging framework for PHP" default="help">
+<project name="Apache log4php" basedir="." description="A versatile logging framework for PHP" default="help">
+
+    <property name="version" value="3.0.0-dev" />
 
     <!-- Task for rendering manual pages via Twig -->
     <taskdef name="twig" classname="lib.phing.task.TwigTask" />
 
-    <!-- Current project version -->
-    <property name="version" value="3.0.0-dev" />
-
-    <target name="help">
-        <echo msg="Darn! Nobody has written the help section yet." />
+    <target name="help" description="Display build options">
+        <echo msg="No target given. Use 'phing -l' to see available targets." />
     </target>
 
-    <target name="clean">
-        <delete dir="${project.basedir}/target" includeemptydirs="true" quiet="true" />
+    <target name="clean" description="Clean build artifacts">
+        <delete dir="build" includeemptydirs="true" quiet="true" />
+    </target>
+    
+    <target name="prepare">
+        <mkdir dir="build" />
+        <mkdir dir="build/packages" />
+        <mkdir dir="build/temp" />
+        <mkdir dir="build/reports" />
+    </target>
+    
+    <target name="build" depends="clean,prepare,test" />
+
+    <target name="apigen" description="Generate API documentation using ApiGen" depends="prepare">
+        <apigen config="apigen.neon" executable="vendor\\bin\\apigen.php.bat" />
     </target>
 
-    <target name="apigen">
-        <apigen config="apigen.neon" />
-    </target>
-
-    <target name="test">
-        <phpunit haltonerror="true" haltonfailure="true" printsummary="true">
+    <target name="test" depends="prepare" description="Run unit tests and generate code coverage.">
+        <mkdir dir="build/reports/coverage" />
+    
+        <!-- Prepare the coverage database -->
+        <coverage-setup database="build/temp/coverage.db">
+            <fileset dir="src">
+                <include name="**/*.php"/>
+            </fileset>
+        </coverage-setup>
+        
+        <!-- Run unit tests, collect coverage data -->
+        <phpunit codecoverage="true" haltonerror="true" haltonfailure="true" printSummary="true">
+            <formatter type="plain" usefile="false" />
             <batchtest>
                 <fileset dir="tests">
-                    <include name="*.php"/>
+                    <include name="**/*Test*.php"/>
                 </fileset>
             </batchtest>
         </phpunit>
+        
+        <!-- Generate coverage report -->
+        <coverage-report outfile="build/temp/coverage.xml">
+            <report todir="build/reports/coverage" />
+        </coverage-report>
     </target>
 
-    <target name="sniff">
-        <phpcodesniffer standard="PSR2">
+    <target name="phpcs" description="Check coding standards using PHP_Codesniffer">
+        <phpcodesniffer standard="PSR2" skipversioncheck="true">
             <fileset dir="src/">
                 <include name="**/*.php"/>
             </fileset>
             <fileset dir="tests/">
                 <include name="**/*.php"/>
             </fileset>
-            <fileset dir="lib/">
-                <include name="**/*.php"/>
-            </fileset>
         </phpcodesniffer>
     </target>
 
-    <target name="package">
-        <mkdir dir="target/packages" />
+    <target name="package" depends="test,docs">
+        <mkdir dir="build/packages" />
         <echo msg="Creating zip archive..." />
 
-        <zip destfile="target/packages/apache-log4php-${version}.zip">
-            <fileset dir="src">
-                <include name="**/**" />
+        <zip destfile="build/packages/apache-log4php-${version}.zip">
+            <fileset dir=".">
+                <include name="examples/**" />
+                <include name="lib/**" />
+                <include name="manual/**" />
+                <include name="src/**" />
+                <include name="tests/**" />
+                <include name="apigen.neon" />
+                <include name="build.xml" />
+                <include name="composer.json" />
+                <include name="phpunit.xml" />
+                <include name="README.textile" />
+                <include name="setenv.bat" />
             </fileset>
         </zip>
-        <tar destfile="target/packages/apache-log4php-${version}.tar.gz" compression="gzip">
+        <!--
+        <tar destfile="build/packages/apache-log4php-${version}.tar.gz" compression="gzip">
             <fileset dir=".">
                 <include name="src" />
             </fileset>
         </tar>
+        -->
     </target>
 
-    <target name="manual">
-        <copy todir="target/manual">
+    <target name="docs">
+        <copy todir="build/docs">
             <fileset dir="manual/resources">
                 <include name="**" />
             </fileset>
         </copy>
-        <twig templates="manual/templates" target="target/manual">
+        <twig templates="manual/templates" target="build/docs">
             <fileset dir="manual/pages">
                 <include name="**/*.twig"/>
             </fileset>
