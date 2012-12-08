@@ -2,6 +2,8 @@
 
 namespace Apache\log4php\Tests;
 
+use \Apache\log4php\Logger;
+
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -19,10 +21,13 @@ namespace Apache\log4php\Tests;
  * limitations under the License.
  */
 
-class LoggerTest extends PHPUnit_Framework_TestCase
+class LoggerTest extends \PHPUnit_Framework_TestCase
 {
     public function testTest1()
     {
+        Logger::getLogger('foo')->trace(1);
+        Logger::getLogger('foo')->debug(1);
+        Logger::getLogger('foo')->info(1);
         self::assertTrue(true);
     }
 
