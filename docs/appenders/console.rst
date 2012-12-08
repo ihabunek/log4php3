@@ -2,14 +2,14 @@
 LoggerAppenderConsole
 =====================
 
-``LoggerAppenderConsole`` writes logging events to the ``php://stdout`` or the ``php://stderr``
-stream, the former being the default target.
+``LoggerAppenderConsole`` writes logging events to the ``php://stdout`` or the 
+``php://stderr`` stream, the former being the default target.
 
 Layout
 ------
 
-This appender requires a layout. If no layout is specified in configuration, LoggerLayoutSimple
-will be used by default.
+This appender requires a layout. If no layout is specified in configuration, 
+LoggerLayoutSimple will be used by default.
 
 Parameters
 ----------

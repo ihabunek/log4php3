@@ -2,9 +2,10 @@
 Appenders
 =========
 
-Logging requests can be sent to multiple destinations, such as files, databases, syslog and others.
-Such destinations are called appenders. Appenders are attached to `Loggers <./loggers.html>`_
-and each logger can have multiple attached appenders.
+Logging requests can be sent to multiple destinations, such as files, databases,
+syslog and others. Such destinations are called appenders. Appenders are
+attached to `Loggers <./loggers.html>`_ and each logger can have multiple
+attached appenders.
 
 Appender reference
 ------------------
@@ -15,37 +16,6 @@ The following appender classes are available:
    :maxdepth: 1
 
    console
-
-+---------------------------+---------------------------------------------------------------------+
-| Name                      | Logging destination                                                 |
-+===========================+=====================================================================+
-| LoggerAppenderConsole     | Console, directly to the stdout or stderr stream.                   |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderEcho        | Console, using the PHP ``echo`` command.                            |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderFile        | A file.                                                             |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderDailyFile   | A file (new file each day).                                         |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderRollingFile | A file (new file when a specified size has been reached).           |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderMail        | Sends the log via email. The entire log is sent in one email.       |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderMailEvent   | Sends the log via email. Log entries are sent in individual emails. |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderMongoDB     | MongoDB                                                             |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderNull        | Ignores all log events                                              |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderPDO         | Database                                                            |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderPhp         | Creates a PHP user-level message using the PHP ``trigger_error()``  |
-|                           | function.                                                           |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderSocket      | A network socket                                                    |
-+---------------------------+---------------------------------------------------------------------+
-| LoggerAppenderSyslog      | Syslog                                                              |
-+---------------------------+---------------------------------------------------------------------+
 
 Configuring appenders
 ---------------------
@@ -63,25 +33,30 @@ Configuring appenders
         </root>
     </configuration>
 
-From the configuration you can see that an appender has the following properties:
+From the configuration you can see that an appender has the following
+properties:
 
 * A **name** which uniquely identifies it, in this case *default*.
 
-* A **class** which specifies which appender class will be used to handle the  requests. Since we
-  wish to log to a file, ``LoggerAppenderFile`` is used in this case.
+* A **class** which specifies which appender class will be used to handle the
+  requests. Since we wish to log to a file, ``LoggerAppenderFile`` is used in
+  this case.
 
-* A **layout** which transforms the logging events to string which can be logged. A layout is
-  required by most appenders, but some do not require it, such as the database appender. If a
-  layout is not defined, the appenders will use a default layout.
+* A **layout** which transforms the logging events to string which can be
+  logged. A layout is required by most appenders, but some do not require it,
+  such as the database appender. If a layout is not defined, the appenders will
+  use a default layout.
 
-* Zero or more **parameters** which configure the appender behaviour. In this example, the *file*
-  parameter governs the path to the file which will be used for logging, and *append* defines that
-  log messages should be appended to the file, instead of truncating it.
+* Zero or more **parameters** which configure the appender behaviour. In this
+  example, the *file* parameter governs the path to the file which will be used
+  for logging, and *append* defines that log messages should be appended to the
+  file, instead of truncating it.
 
 Linking appenders to loggers
 ----------------------------
 
-A logger can be linked to one or more appenders. Also, multiple loggers can share the same appender.
+A logger can be linked to one or more appenders. Also, multiple loggers can
+share the same appender.
 
 Consider the following configuration:
 
@@ -101,19 +76,21 @@ Consider the following configuration:
         </logger>
     </log4php:configuration>
 
-This configures two appenders, called *primus* and *secundus*, and two loggers named *main* and
-*alternative*. The logger *main* is linked to *primus* and *secundus* and will therefore forward
-logging events to both of them. In other words, it will log both to console and to a file. Logger
-*alternative* is only linked to appender *primus* and will therefore only log to the console.
+This configures two appenders, called *primus* and *secundus*, and two loggers 
+named *main* and *alternative*. The logger *main* is linked to *primus* and 
+*secundus* and will therefore forward logging events to both of them. In other 
+words, it will log both to console and to a file. Logger *alternative* is only 
+linked to appender *primus* and will therefore only log to the console.
 
 Appender threshold
 ------------------
 
-An appender can be assigned a threshold level. All logging requests with level lower than this
-threshold will be ignored.
+An appender can be assigned a threshold level. All logging requests with level 
+lower than this threshold will be ignored.
 
-For example, if you set ``WARN`` as a threshold, then ``INFO``, ``DEBUG`` and ``TRACE`` level events
-recieved by the appender will not be logged, but ``WARN``, ``ERROR`` and ``FATAL`` will.
+For example, if you set ``WARN`` as a threshold, then ``INFO``, ``DEBUG`` and 
+``TRACE`` level events recieved by the appender will not be logged, but 
+``WARN``, ``ERROR`` and ``FATAL`` will.
 
 An example of setting an appender threshold:
 

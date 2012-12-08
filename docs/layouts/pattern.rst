@@ -35,17 +35,21 @@ Conversion patterns
 ===================
 
 **Conversion pattern** is a string which controls the formatting of logging
-events. It controls how logging events will be transformed into strings by the layout.
+events. It controls how logging events will be transformed into strings by the
+layout.
 
 The conversion pattern is closely related to the conversion pattern of the PHP
-`sprintf <http://www.php.net/manual/en/function.sprintf.php>`_ function.
-It is composed of literal text and format control expressions called *conversion specifiers*.
+`sprintf <http://www.php.net/manual/en/function.sprintf.php>`_ function. It is
+composed of literal text and format control expressions called *conversion
+specifiers*.
+
+A conversion specifier begins with a percent sign (%) and is followed by a
+*conversion word*. Some conversion words require one or more *options* to be
+given. These are specified in braces after the conversion word. An example of a
+conversion specifier is ``%message`` which will be converted into the message
+from the logging event which is being logged.
 
 
-A conversion specifier begins with a percent sign (%) and is followed by a *conversion word*.
-Some conversion words require one or more *options* to be given. These are specified in braces after the
-conversion word. An example of a conversion specifier is ``%message`` which will be converted into
-the message from the logging event which is being logged.
 
 Conversion specifiers
 ---------------------
@@ -56,12 +60,13 @@ Conversion specifiers
 
     Name of the Logger which generated the logging request.
 
-    Optionally, a desired output length can be specified. If given, the converter will attempt
-    to abbreviate the logger name without losing too much information in the process. If
-    zero length is specified, only the rightmost name fragment will be output.
+    Optionally, a desired output length can be specified. If given, the
+    converter will attempt to abbreviate the logger name without losing too much
+    information in the process. If zero length is specified, only the rightmost
+    name fragment will be output.
 
-    Specifying the desired length 0 means that only the class name will be returned without
-    the corresponding namespace.
+    Specifying the desired length 0 means that only the class name will be
+    returned without the corresponding namespace.
 
     Several examples of the shortening algorithm in action:
 
@@ -92,29 +97,29 @@ Conversion specifiers
 
     Note that rightmost segment will never be shortened. It is possible that the
     resulting string will be longer than the specified desired length.
-    For backward compatibility, a dot can be used as a namespace separator, as well as
-    the backslash.
+    For backward compatibility, a dot can be used as a namespace separator, as
+    well as the backslash.
 
 .. function:: %C{length}
 .. function:: %class{length}
 
-    The fully qualified class name of the caller issuing the logging request. Just like
-    **%logger**, a desired length can be defined as an option.
+    The fully qualified class name of the caller issuing the logging request.
+    Just like **%logger**, a desired length can be defined as an option.
 
 .. function:: %cookie{key}
 
-    A value from the $_COOKIE superglobal array corresponding to the given key. If no key is given,
-    will return all values in key=value format.
+    A value from the $_COOKIE superglobal array corresponding to the given key.
+    If no key is given, will return all values in key=value format.
 
 .. function:: %d{pattern}
 .. function:: %date{pattern}
 
-    The date/time of the logging event. Accepts a pattern string as an option. The pattern syntax
-    is the same as used by the `PHP date <http://php.net/manual/en/function.date.php>`_
-    function.
+    The date/time of the logging event. Accepts a pattern string as an option.
+    The pattern syntax is the same as used by the
+    `PHP date <http://php.net/manual/en/function.date.php>`_ function.
 
-    If no pattern is given, the date format will default to the ISO8601 datetime format, which is
-    the same as giving the pattern: ``c``.
+    If no pattern is given, the date format will default to the ISO8601 datetime
+    format, which is the same as giving the pattern: ``c``.
 
     +-------------------------------+-------------------------------------------+
     | Conversion specifier          | Result                                    |
@@ -130,7 +135,6 @@ Conversion specifiers
     | %date{l jS \of F Y h:i:s A}   | Tuesday 27th of December 2011 12:01:32 PM |
     +-------------------------------+-------------------------------------------+
 
-
 .. function:: %e{key}
 .. function:: %env{key}
 
@@ -142,8 +146,8 @@ Conversion specifiers
 .. function:: %exception
 .. function:: %throwable
 
-    The exception associated with the logging event, along with it's stack trace. If there is no
-    exception, evalutates to an empty string.
+    The exception associated with the logging event, along with it's stack
+    trace. If there is no exception, evalutates to an empty string.
 
 .. function:: %F
 .. function:: %file
@@ -189,8 +193,8 @@ Conversion specifiers
 .. function:: %r
 .. function:: %relative
 
-    The number of milliseconds elapsed since the start of the application until the creation of the
-    logging event.
+    The number of milliseconds elapsed since the start of the application until
+    the creation of the logging event.
 
 .. function:: %req{key}
 .. function:: %request{key}
@@ -229,38 +233,44 @@ Conversion specifiers
 .. function:: %x
 .. function:: %ndc
 
-    The NDC (Nested Diagnostic Context) associated with the thread that generated the logging event.
+    The NDC (Nested Diagnostic Context) associated with the thread that
+    generated the logging event.
 
 .. function:: %X{key}
 .. function:: %mdc{key}
 
-    A value from the Mapped Diagnostic Context (MDC) corresponding to the given key.
+    A value from the Mapped Diagnostic Context (MDC) corresponding to the given
+    key.
 
 Format modifiers
 ----------------
 
-By default the relevant information is output as-is. However, with the aid of format modifiers
-it is possible to change the minimum and maximum width and the justifications of each data field.
+By default the relevant information is output as-is. However, with the aid of
+format modifiers it is possible to change the minimum and maximum width and the
+justifications of each data field.
 
-Both format modifiers are optional, and are placed between the percent sign (%) and the conversion
-word. These are, in order:
+Both format modifiers are optional, and are placed between the percent sign (%)
+and the conversion word. These are, in order:
 
-#. A **minimum width specifier**, a number which determines the minimum width of the resulting
-   string. If the resulting string is shorter that the given number, it will be padded with spaces to
-   the desired length. By default, the string is right-justified (padded from left), but adding a
-   "-" sign before the specifier will make it left-justified.
+#. A **minimum width specifier**, a number which determines the minimum width of
+   the resulting string. If the resulting string is shorter that the given
+   number, it will be padded with spaces to the desired length. By default, the
+   string is right-justified (padded from left), but adding a "-" sign before
+   the specifier will make it left-justified.
 
-#. A **maximum widht specifier**, a dot (".") followed by a number which determines the maximum
-   allowed width of the resulting string. If the resulting string is shorter than the given number, it
-   will be truncated to the maximum width. By default the string is truncated from the right, but
-   adding a "-" sign before the specifier will cause it to truncate from the left.
+#. A **maximum widht specifier**, a dot (".") followed by a number which
+   determines the maximum allowed width of the resulting string. If the
+   resulting string is shorter than the given number, it will be truncated to
+   the maximum width. By default the string is truncated from the right, but
+   adding a "-" sign before the specifier will cause it to truncate from the
+   left.
 
 The following table demonstrates various uses of format modifiers:
 
 .. list-table::
     :header-rows: 1
     :widths: 10 10 10 10 10 50
-    
+
     * - Format modifier
       - Padding
       - Trimming
@@ -284,7 +294,8 @@ The following table demonstrates various uses of format modifiers:
       - none
       - 20
       - none
-      - Right pad with spaces if the logger name is less than 20 characters long.
+      - Right pad with spaces if the logger name is less than 20 characters
+        long.
     * - ``%.30logger``
       - none
       - right
@@ -302,20 +313,22 @@ The following table demonstrates various uses of format modifiers:
       - right
       - 20
       - 30
-      - Left pad with spaces if the logger name is shorter than 20 characters. However, if
-        the logger name is longer than 30 characters, then trim from the end.
+      - Left pad with spaces if the logger name is shorter than 20 characters.
+        However, if the logger name is longer than 30 characters, then trim from
+        the end.
     * - ``%-20.30logger``
       - left
       - right
       - 20
       - 30
-      - Right pad with spaces if the logger name is shorter than 20 characters. However, if the
-        logger name is longer than 30 characters, then trim from the end.
+      - Right pad with spaces if the logger name is shorter than 20 characters.
+        However, if the logger name is longer than 30 characters, then trim from
+        the end.
 
-The following table lists a couple of examples for using format modifiers. 
+The following table lists a couple of examples for using format modifiers.
 
-Note that the square brackets are only added to the conversion pattern to visually delimit the 
-output.
+Note that the square brackets are only added to the conversion pattern to
+visually delimit the output.
 
 +--------------------+------------------------+------------------+-------------------------------+
 | Conversion pattern | Logger name            | Result           | Note                          |
@@ -332,9 +345,9 @@ output.
 Examples
 --------
 
-The following configuration configures a ``LoggerAppenderEcho`` which uses the pattern
-layout. All examples will use the same code and configuration, only the conversion pattern will
-change from example to example.
+The following configuration configures a ``LoggerAppenderEcho`` which uses the
+pattern layout. All examples will use the same code and configuration, only the
+conversion pattern will change from example to example.
 
 .. container:: tabs
 
@@ -396,19 +409,20 @@ Running the example code produces the following output:
     2012-02-27T19:42:17+01:00 myLogger WARN  Sed sit amet ipsum mauris.
 
 In this example, ``%date`` is converted to the event datetime in default format
-(corresponding to the ISO-8601 specification), and ``%-5level`` produces the event
-level right padded to 5 characters. Since longest level name is 5 characters long, this
-ensures that the message always starts at the same character position which improves log
-readability.
+(corresponding to the ISO-8601 specification), and ``%-5level`` produces the
+event level right padded to 5 characters. Since longest level name is 5
+characters long, this ensures that the message always starts at the same
+character position which improves log readability.
 
-Notice that the newline between logging events (%n) has to be explicitely defined. Otherwise all
-logging events will be logged in the same line.
+Notice that the newline between logging events (%n) has to be explicitely
+defined. Otherwise all logging events will be logged in the same line.
 
 Formatting the date
 ~~~~~~~~~~~~~~~~~~~
 
-The ``%date`` conversion word can take the desired date format as an option. For example,
-if you're European, the d.m.Y date format might be more familiar. Also, adding milliseconds.
+The ``%date`` conversion word can take the desired date format as an option. For
+example, if you're European, the d.m.Y date format might be more familiar. Also,
+adding milliseconds.
 
 Conversion pattern: ``%date{d.m.Y H:i:s,u} %logger %-5level %msg%n``
 
@@ -440,14 +454,15 @@ Request ``/test.php?foo=bar`` it will produce the output similar to:
 Logging exceptions
 ~~~~~~~~~~~~~~~~~~
 
-If you wish to log any exception passed to the logging methods, you should add the ``%ex``
-specifier to the end of your conversion pattern, after ``%newline``. This way, if an exception
-is loggerd it will be addded to your log below your message.
+If you wish to log any exception passed to the logging methods, you should add
+the ``%ex`` specifier to the end of your conversion pattern, after ``%newline``.
+This way, if an exception is loggerd it will be addded to your log below your
+message.
 
 For example: ``%date %logger %message%newline%ex``
 
-In the following code, suppose that the work() method can throw an exception. This wolud be a good
-way to deal with it:
+In the following code, suppose that the work() method can throw an exception.
+This wolud be a good way to deal with it:
 
 .. code-block:: php
 
@@ -479,5 +494,5 @@ If work() throws an exception, your log might look something like this:
     #2 {main}
     2012-10-08T10:11:18+02:00 foo Done.
 
-The exception, along with the full stack trace ends up in your log. This also works with nested
-exceptions, the full stack trace is added.
+The exception, along with the full stack trace ends up in your log. This also
+works with nested exceptions, the full stack trace is added.

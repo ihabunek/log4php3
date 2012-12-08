@@ -26,8 +26,8 @@ Examples
 Default configuration example
 -----------------------------
 
-The default configuration of ``LoggerLayoutXml`` will use the log4php XML namespace and include the
-location information.
+The default configuration of ``LoggerLayoutXml`` will use the log4php XML 
+namespace and include the location information.
 
 Configuration file:
 
@@ -98,8 +98,8 @@ Produces the following output:
 Overriding default options
 --------------------------
 
-This example show how to configure ``LoggerLayoutXml`` to exclude the location information and use
-the log4j XML namespace.
+This example show how to configure ``LoggerLayoutXml`` to exclude the location
+information and use the log4j XML namespace.
 
 Configuration file:
 
