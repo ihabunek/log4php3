@@ -6,12 +6,18 @@ LoggerLayoutSimple
 by the message.
 
 It is interesting to note that the output of ``LoggerLayoutSimple`` is identical
-to that of `pattern`_ with the `conversion pattern` set to ``%p - %m%n``.
+to that of `LoggerLayoutPattern <patern.html>`_ with the `conversion pattern` 
+set to ``%p - %m%n``.
 
 Parameters
 ----------
 
 This layout does not have any configurable parameters.
+
+Examples
+--------
+
+Sample configuration:
 
 .. container:: tabs
 

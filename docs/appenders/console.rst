@@ -25,32 +25,36 @@ Examples
 
 This example shows how to configure ``LoggerAppenderConsole``.
 
-.. code-block:: xml
+.. container:: tabs
 
-    <configuration xmlns="http://logging.apache.org/log4php/">
-        <appender name="default" class="LoggerAppenderConsole">
-            <layout class="LoggerLayoutSimple" />
-        </appender>
-        <root>
-            <appender_ref ref="default" />
-        </root>
-    </configuration>
+    .. rubric:: XML format
+    .. code-block:: xml
 
-.. code-block:: php
+        <configuration xmlns="http://logging.apache.org/log4php/">
+            <appender name="default" class="LoggerAppenderConsole">
+                <layout class="LoggerLayoutSimple" />
+            </appender>
+            <root>
+                <appender_ref ref="default" />
+            </root>
+        </configuration>
 
-    array(
-        'appenders' => array(
-            'default' => array(
-                'class' => 'LoggerAppenderConsole',
-                'layout' => array(
-                    'class' => 'LoggerLayoutSimple',
+    .. rubric:: PHP format
+    .. code-block:: php
+
+        array(
+            'appenders' => array(
+                'default' => array(
+                    'class' => 'LoggerAppenderConsole',
+                    'layout' => array(
+                        'class' => 'LoggerLayoutSimple',
+                    ),
                 ),
             ),
-        ),
-        'rootLogger' => array(
-            'appenders' => array('default'),
-        ),
-    );
+            'rootLogger' => array(
+                'appenders' => array('default'),
+            ),
+        );
 
 ..  Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements. See the NOTICE file distributed with

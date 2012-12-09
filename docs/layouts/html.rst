@@ -36,7 +36,6 @@ Examples
                 <appender_ref ref="default" />
             </root>
         </configuration>
-        ]]></pre>
 
     .. rubric:: PHP format
     .. code-block:: php

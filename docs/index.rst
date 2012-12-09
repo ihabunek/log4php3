@@ -7,13 +7,14 @@ Welcome to Apache log4php.
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    introduction
    quickstart
    configuration
    appenders/index
    layouts/index
+   filters/index
 
 ..  Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements. See the NOTICE file distributed with

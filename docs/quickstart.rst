@@ -4,11 +4,12 @@ Quick start
 
 First, install Apache log4php.
 
-You may also like to read the introduction_ chapter to familiarise yoursef with the basic concepts
-used throughout the documentation and examples.
+You may also like to read the `introduction <introduction.html>`_ chapter to 
+familiarise yoursef with the basic concepts used throughout the documentation 
+and examples.
 
 A trivial example
-=================
+-----------------
 
 Just want logging to stdout?
 
@@ -21,11 +22,13 @@ Just want logging to stdout?
 
 This produces the following output:
 
+.. code-block:: bash
+
     INFO - This is an informational message.
     WARN - I'm not feeling so good...
 
 A simple example
-================
+-----------------
 
 This example shows how to configure log4php using an XML configuration file. The framework will be
 configured to log messages to a file, but only those with level greater or equal to ``WARN``.
@@ -33,6 +36,7 @@ configured to log messages to a file, but only those with level greater or equal
 First, create a configuration file named ``config.xml`` containing:
 
 .. code-block:: xml
+    :linenos:
 
     <configuration xmlns="http://logging.apache.org/log4php/">
         <appender name="myAppender" class="LoggerAppenderFile">
@@ -77,11 +81,14 @@ To try it out, run the following code:
 
 This will create a file named ``myLog.log`` containing the following output:
 
+.. code-block:: bash
+
     WARN - My fourth message.
     ERROR - My fifth message.
     FATAL - My sixth message.
 
 An advanced example
+-------------------
 
 This example covers named loggers, layouts and best practices in object-oriented programming.
 
@@ -159,9 +166,13 @@ Consider the following code snippet:
 
 This produces the following output in the console:
 
+.. code-block:: bash
+
     INFO - We have liftoff.
 
 And the following in the log file:
+
+.. code-block:: bash
 
     01/06/11 18:43:39,545 [5428] INFO Foo - We have liftoff.
 
