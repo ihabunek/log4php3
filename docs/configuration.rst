@@ -39,7 +39,7 @@ documentation:
 
 .. toctree::
     :maxdepth: 1
-    
+
     appenders/index
     layouts/index
 
@@ -193,9 +193,9 @@ The default configuration in PHP format is:
 .. note::
 
     You can fetch the default configuration as a PHP array by running:
-    
+
     .. code-block:: php
-    
+
         LoggerConfiguratorDefault::getDefaultConfiguration();
 
 Programmatic configuration
@@ -261,7 +261,7 @@ will be available in the configure() method of the LoggerConfigurator as ``$inpu
 
     Always call ``activateOptions()`` on all appenders, filters and layouts after setting their
     configuration parameters. Otherwise, the configuration may not be properly activated.
-    
+
 ..  Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements. See the NOTICE file distributed with
     this work for additional information regarding copyright ownership.

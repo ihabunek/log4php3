@@ -1,9 +1,19 @@
 =====================
-LoggerAppenderConsole
+LoggerAppenderFirePHP
 =====================
 
-``LoggerAppenderConsole`` writes logging events to the ``php://stdout`` or the 
-``php://stderr`` stream, the former being the default target.
+``LoggerAppenderFirePHP`` logs events via the
+`FirePHP <http://www.firephp.org/>`_ serverside library. The messages are logged
+in HTTP headers and can be viewed using the
+`Developer compainion <http://developercompanion.com/>`_ plugin for Firefox.
+
+Requires the FirePHP server-side library 1.0 or greater. Download it from
+`here <http://sourcemint.com/github.com/firephp/firephp/1>`_
+
+.. warning::
+
+    This appender is still experimental. Behaviour may change in future versions
+    without notification.
 
 Layout
 ------
@@ -14,16 +24,21 @@ This appender requires a layout. If no layout is specified in configuration,
 Parameters
 ----------
 
-+-----------+--------+----------+---------+-------------------------------------------------------+
-| Parameter | Type   | Required | Default | Description                                           |
-+===========+========+==========+=========+=======================================================+
-| target    | string | No       | stdout  | The stream to write to; either "stdout" or "stderr".  |
-+-----------+--------+----------+---------+-------------------------------------------------------+
+The following parameters are available:
+
++-------------+---------+----------+---------+-------------------------------------------------------+
+| Parameter   | Type    | Required | Default | Description                                           |
++=============+=========+==========+=========+=======================================================+
+| target      | string  | No       | page    | The target to which messages will be sent. Possible   |
+|             |         |          |         | options are 'page' (default), 'request', 'package'    |
+|             |         |          |         | and 'controller'. For more details, see FirePHP       |
+|             |         |          |         | documentation.                                        |
++-------------+---------+----------+---------+-------------------------------------------------------+
 
 Examples
 --------
 
-This example shows how to configure ``LoggerAppenderConsole``.
+Sample configuration:
 
 .. container:: tabs
 
@@ -31,7 +46,7 @@ This example shows how to configure ``LoggerAppenderConsole``.
     .. code-block:: xml
 
         <configuration xmlns="http://logging.apache.org/log4php/">
-            <appender name="default" class="LoggerAppenderConsole">
+            <appender name="default" class="LoggerAppenderFirePHP">
                 <layout class="LoggerLayoutSimple" />
             </appender>
             <root>
@@ -45,7 +60,7 @@ This example shows how to configure ``LoggerAppenderConsole``.
         array(
             'appenders' => array(
                 'default' => array(
-                    'class' => 'LoggerAppenderConsole',
+                    'class' => 'LoggerAppenderFirePHP',
                     'layout' => array(
                         'class' => 'LoggerLayoutSimple',
                     ),

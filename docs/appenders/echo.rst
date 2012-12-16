@@ -1,9 +1,11 @@
-=====================
-LoggerAppenderConsole
-=====================
+==================
+LoggerAppenderEcho
+==================
 
-``LoggerAppenderConsole`` writes logging events to the ``php://stdout`` or the 
-``php://stderr`` stream, the former being the default target.
+``LoggerAppenderEcho`` writes logging events using PHP's
+`echo() <http://php.net/manual/en/function.echo.php>`_ function.
+
+Echo outputs may be buffered.
 
 Layout
 ------
@@ -14,16 +16,22 @@ This appender requires a layout. If no layout is specified in configuration,
 Parameters
 ----------
 
-+-----------+--------+----------+---------+-------------------------------------------------------+
-| Parameter | Type   | Required | Default | Description                                           |
-+===========+========+==========+=========+=======================================================+
-| target    | string | No       | stdout  | The stream to write to; either "stdout" or "stderr".  |
-+-----------+--------+----------+---------+-------------------------------------------------------+
+The following parameters are available:
+
++----------------+---------+----------+---------+--------------------------------------------------+
+| Parameter      | Type    | Required | Default | Description                                      |
++================+=========+==========+=========+==================================================+
+| htmlLineBreaks | boolean | No       | false   | If set to true, a ``<br />`` element will be     |
+|                |         |          |         | inserted before each line break in the logged    |
+|                |         |          |         | message.                                         |
++----------------+---------+----------+---------+--------------------------------------------------+
 
 Examples
 --------
 
-This example shows how to configure ``LoggerAppenderConsole``.
+
+This example shows how to configure ``LoggerAppenderEcho`` using the
+``TTCC layout`` with ``htmlLineBreaks`` turned on.
 
 .. container:: tabs
 
@@ -31,8 +39,9 @@ This example shows how to configure ``LoggerAppenderConsole``.
     .. code-block:: xml
 
         <configuration xmlns="http://logging.apache.org/log4php/">
-            <appender name="default" class="LoggerAppenderConsole">
+            <appender name="default" class="LoggerAppenderEcho">
                 <layout class="LoggerLayoutSimple" />
+                <param name="htmlLineBreaks" value="true" />
             </appender>
             <root>
                 <appender_ref ref="default" />
@@ -45,9 +54,12 @@ This example shows how to configure ``LoggerAppenderConsole``.
         array(
             'appenders' => array(
                 'default' => array(
-                    'class' => 'LoggerAppenderConsole',
+                    'class' => 'LoggerAppenderEcho',
                     'layout' => array(
                         'class' => 'LoggerLayoutSimple',
+                    ),
+                    'params' => array(
+                        'htmlLineBreaks' => 'true',
                     ),
                 ),
             ),

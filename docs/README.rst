@@ -34,11 +34,11 @@ To generate tabs, do the following:
 
         .. rubric:: XML format
         .. code-block:: xml
-        
+
         <div id="xml_code">...</div>
-        
+
         .. rubric:: PHP format
         .. code-block:: php
-        
+
         array("php_code" => array(...))
 

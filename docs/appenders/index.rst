@@ -16,6 +16,13 @@ The following appender classes are available:
    :maxdepth: 1
 
    console
+   daily-file
+   echo
+   file
+   firephp
+   mail
+   mail-event
+   mongodb
 
 Configuring appenders
 ---------------------
