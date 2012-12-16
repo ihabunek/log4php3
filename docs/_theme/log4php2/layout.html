@@ -2,7 +2,9 @@
 
 {% set script_files = script_files + ['_static/theme_extras.js'] %}
 
-{%- block relbar1 %}
+{% block doctype %}<!DOCTYPE html>{% endblock %}
+
+{% block relbar1 %}
 <div class="navbar">
     <div class="navbar-inner">
         <div class="container-fluid">
@@ -28,7 +30,6 @@
     </div>
 </div>
 {% endblock %}
-
 
 {% block content %}
 <table class="layout-table">

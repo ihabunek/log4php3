@@ -12,11 +12,12 @@
 # serve to show the default.
 
 import sys, os
+from os.path import abspath, dirname, join
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('.'))
+sys.path.append(abspath(join(dirname(__file__), "_ext")))
 
 # -- General configuration -----------------------------------------------------
 
@@ -25,10 +26,10 @@ import sys, os
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = []
+extensions = ["log4phpdocs"]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+# templates_path = []
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -64,7 +65,7 @@ release = '2.3.1-dev'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build', '_env']
+exclude_patterns = ['_build', '_env', 'README.rst']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -99,7 +100,7 @@ html_theme = 'log4php2'
 #html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['_theme']
+html_theme_path = ["_theme"]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -120,7 +121,7 @@ html_theme_path = ['_theme']
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+#html_static_path = ["_static"]
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -129,6 +130,12 @@ html_static_path = ['_static']
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
 #html_use_smartypants = True
+
+# HTML translator class for the builder
+html_translator_class = "log4phpdocs.Log4phpHTMLTranslator"
+
+# Content template for the index page.
+#html_index = ''
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {}
@@ -184,7 +191,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'Apachelog4php.tex', u'Apache log4php Documentation',
-   u'Ivan Habunek', 'manual'),
+   'Apache Software Foundation', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -213,8 +220,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'apachelog4php', u'Apache log4php Documentation',
-     [u'Ivan Habunek'], 1)
+    ('index', 'apachelog4php', u'Apache log4php Documentation', [u'Apache Software Foundation'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -226,9 +232,9 @@ man_pages = [
 # Grouping the document tree into Texinfo files. List of tuples
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
-texinfo_documents = [
-  ('index', 'Apachelog4php', u'Apache log4php Documentation',
-   u'Ivan Habunek', 'Apachelog4php', 'One line description of project.',
+texinfo_documents = [(
+   'index', 'Apachelog4php', 'Apache log4php Documentation',
+   'Apache Software Foundation', 'Apachelog4php', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -245,10 +251,10 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'Apache log4php'
-epub_author = u'Ivan Habunek'
-epub_publisher = u'Ivan Habunek'
-epub_copyright = u'2012, Ivan Habunek'
+epub_title = 'Apache log4php'
+epub_author = 'Apache Software Foundation'
+epub_publisher = 'Apache Software Foundation'
+epub_copyright = '2012, Apache Software Foundation'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
@@ -285,8 +291,8 @@ epub_copyright = u'2012, Ivan Habunek'
 #epub_tocdup = True
 
 #
-# Additions by IH
-# ###############
+# Additions by Ivan Habunek
+# #########################
 
 # Hack to enable PHP highlighting for PHP code not between "<?php" "?>" by default
 # From: https://github.com/fabpot/sphinx-php

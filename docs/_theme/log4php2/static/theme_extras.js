@@ -1,5 +1,4 @@
 $(function() {
-    patchTables();
     reformatTabs();
     activateTabs();
 });
@@ -53,13 +52,4 @@ function activateTabs()
         $(currentTab).show();
         return false;
     });
-}
-
-function patchTables()
-{
-    $("table.docutils").removeClass("docutils")
-        .addClass("table")
-        .addClass("table-bordered")
-        .addClass("table-hover")
-        .attr("border", 0);
 }
